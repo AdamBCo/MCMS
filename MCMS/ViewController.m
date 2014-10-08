@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.enterCreature.delegate = self;
     MagicalCreature *unicorn = [[MagicalCreature alloc]initWithName:@"Magical Mary"];
     unicorn.favoriteMusic = @"Hip Hop";
     unicorn.creatureImage = [UIImage imageNamed:@"Unicorn"];
@@ -39,7 +40,7 @@
     cow.accessories = [NSMutableArray arrayWithObjects:@"Pin-back button", @"Pocket protector", @"Presidential sash", @"Purse cover from Sutton Hoo burial",@"Purse hook", nil];
     self.creatures = [NSMutableArray arrayWithObjects: unicorn, snail, pokemon, cow, nil];
     
-
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -47,15 +48,13 @@
     [self.creaturesTableView reloadData];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)cell
 {
     if ([segue.identifier isEqualToString:@"ShowCreatureSegue"])
     {
         CreatureViewController *creatureViewController = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.creaturesTableView indexPathForCell:sender];
-        MagicalCreature *selectedCreature = [self.creatures objectAtIndex:indexPath.row];
-        creatureViewController.navigationItem.title = selectedCreature.name;
-        creatureViewController.selectedCreature = selectedCreature;
+        creatureViewController.navigationItem.title = cell.textLabel.text;
+        creatureViewController.selectedCreature = [self.creatures objectAtIndex:[self.creaturesTableView indexPathForCell:cell].row];
     }
     else if ([segue.identifier isEqualToString:@"BattleSegue"])
     {
@@ -105,6 +104,7 @@
             [self.battleCreatures addObject:[self.creatures objectAtIndex:indexPath.row]];
         }
         if (self.battleCreatures.count ==2) {
+            
             [self performSegueWithIdentifier:@"BattleSegue" sender:self];
         }
     }

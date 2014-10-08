@@ -136,6 +136,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <segue destination="9cH-WE-IiQ" kind="show" identifier="ShowCreatureSegue" id="cnh-bA-r49"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -176,7 +179,6 @@
                     <connections>
                         <outlet property="creaturesTableView" destination="ybW-u8-CeC" id="4AU-vR-oll"/>
                         <outlet property="enterCreature" destination="8hR-Al-mcC" id="GkC-hm-awT"/>
-                        <segue destination="9cH-WE-IiQ" kind="show" identifier="ShowCreatureSegue" id="Whz-5f-Rfd"/>
                         <segue destination="3cp-fl-SZw" kind="presentation" identifier="BattleSegue" id="pzo-Q8-OFM"/>
                     </connections>
                 </viewController>
@@ -195,12 +197,49 @@
                     <view key="view" contentMode="scaleToFill" id="yGG-7j-Cs5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Z2-aW-ycc">
+                                <rect key="frame" x="0.0" y="28" width="269" height="269"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="269" id="nPF-Pj-6mx">
+                                        <variation key="widthClass=compact" constant="169"/>
+                                    </constraint>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4a-IZ-Req">
+                                <rect key="frame" x="279" y="336" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nHw-PE-XGV">
+                                <rect key="frame" x="331" y="28" width="269" height="269"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nHw-PE-XGV" secondAttribute="trailing" id="2uM-HW-CM6"/>
+                            <constraint firstItem="9Z2-aW-ycc" firstAttribute="bottom" secondItem="nHw-PE-XGV" secondAttribute="bottom" id="701-2D-y38"/>
+                            <constraint firstItem="0F2-yc-C2S" firstAttribute="top" secondItem="e4a-IZ-Req" secondAttribute="bottom" constant="243" id="BBe-zV-iQh"/>
+                            <constraint firstItem="9Z2-aW-ycc" firstAttribute="leading" secondItem="yGG-7j-Cs5" secondAttribute="leading" id="GVI-pp-xVO"/>
+                            <constraint firstItem="nHw-PE-XGV" firstAttribute="top" secondItem="EhT-Wr-vJI" secondAttribute="bottom" constant="8" id="LSb-Zf-3yC"/>
+                            <constraint firstItem="e4a-IZ-Req" firstAttribute="centerX" secondItem="yGG-7j-Cs5" secondAttribute="centerX" id="OId-8d-l3v"/>
+                            <constraint firstItem="nHw-PE-XGV" firstAttribute="leading" secondItem="9Z2-aW-ycc" secondAttribute="trailing" constant="62" id="S35-Dw-4DL"/>
+                            <constraint firstItem="9Z2-aW-ycc" firstAttribute="top" secondItem="EhT-Wr-vJI" secondAttribute="bottom" constant="8" id="f2L-Vp-JeK"/>
+                            <constraint firstItem="0F2-yc-C2S" firstAttribute="top" secondItem="9Z2-aW-ycc" secondAttribute="bottom" constant="303" id="ngB-m4-zKA">
+                                <variation key="widthClass=compact" constant="400"/>
+                            </constraint>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="creatureOneImage" destination="9Z2-aW-ycc" id="fPz-br-pjz"/>
+                        <outlet property="creatureTwoImage" destination="nHw-PE-XGV" id="zL0-Tg-ws3"/>
+                        <outlet property="winnerLabel" destination="e4a-IZ-Req" id="tuq-eG-zgr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfx-jn-6bs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="163"/>
+            <point key="canvasLocation" x="951" y="826"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vmz-bg-q2f">
